@@ -38,9 +38,9 @@ public class Cliente {
         cpf = cpfs;           
     }
     
-   @Override
+	@Override
 	public String toString(){
-		return "Nome Cpf";
+		return "Nome:" + nome + "\n" + "Cpf:" + cpf;
         }
     
 }
