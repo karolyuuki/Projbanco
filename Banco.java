@@ -1,21 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Banco;
-import java.util.Scanner;
 /**
  *
  * @author Karoline Neves Bernardo - 11311868
  */
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+
 public class Banco {
-    public static void main(String[] args){
-        
-        Scanner entrada = new Scanner(System.in);
-        
-        Conta Conta1 = new Conta();
-        Cliente Cliente1 = new Cliente();
-        System.out.println(Cliente1.toString());
+    private HashMap<Conta, Cliente> cadastro;
+    
+    public Banco(){
+        cadastro = new HashMap<>();
+    }
+    
+    public void inserir(Conta c, Cliente c1){
+        cadastro.put(c, c1);
+    }
+    
+    public Conta buscaConta(String numero){
+        for (Conta c : cadastro.keySet()) {
+            if(c.getNumero().equals(numero))
+                return c;
+        }
+        return null;
+    }
+    
+    public Cliente buscaCliente(String cpf){
+        for(Cliente c: cadastro.values()){
+            if(c.getCpf().equals(cpf))
+                return c;
+        }
+        return null;
+    }
+    
+    public ArrayList<Conta> buscaContasdeUmCliente(String cpf){
+        ArrayList<Conta> cnt = new ArrayList<>();
+        for(HashMap.Entry<Conta, Cliente> cc: cadastro.entrySet()){
+            Conta c = cc.getKey();
+            Cliente c1 = cc.getValue();
+            if(c1.getCpf().equals(cpf))
+                cnt.add(c);
+        }
+        return cnt;
     }
 }
